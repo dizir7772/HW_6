@@ -16,11 +16,11 @@ def handle_other(filename: Path, target_folder: Path) -> None:
 
 
 def handle_archive(filename: Path, target_folder: Path) -> None:
-    target_folder.mkdir(exist_ok=True, parents=True)  # робимо папку для архіва
+    target_folder.mkdir(exist_ok=True, parents=True)
     folder_for_file = target_folder / normalize(filename.name).replace(filename.suffix, '')
     folder_for_file.mkdir(exist_ok=True, parents=True)
     try:
-        shutil.unpack_archive(filename, folder_for_file)  # TODO: Check!
+        shutil.unpack_archive(filename, folder_for_file) 
     except shutil.ReadError:
         print('It is not archive')
         folder_for_file.rmdir()
@@ -83,7 +83,7 @@ def main(folder: Path):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("---> Usage: py sort.py folder_path <---")
+        print("---> Usage: py main.py folder_path <---")
         sys.exit(1)
     folder_for_scan = Path(sys.argv[1])
     print(f'Start in folder: {folder_for_scan.resolve()}')
